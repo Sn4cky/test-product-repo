@@ -50,5 +50,13 @@ pipeline {
 				)
 			}
 		}
+		stage("no-change-detected") {
+			when {
+				expression { ${PROD_CHANGED} == 'false' }
+			}
+			steos {
+				echo "no changes detected in product"
+			}
+		}
     }
 }
