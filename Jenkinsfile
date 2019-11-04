@@ -54,7 +54,7 @@ pipeline {
 		}
 		stage("no-change-detected") {
 			when {
-				expression { ${PROD_CHANGED} == 'false' }
+				expression { env.PROD_CHANGED == 'false' }
 			}
 			steps {
 				echo "no changes detected in product"
