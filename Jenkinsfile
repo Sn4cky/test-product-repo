@@ -14,12 +14,12 @@ pipeline {
 				}
 			}
 			steps {
-				$PROD_CHANGED = 'true'
+				env.PROD_CHANGED = 'true'
 			}
 		}
 		stage("typescript-build") {
 			when {
-				expression { $PROD_CHANGED == 'true' }
+				expression { env.PROD_CHANGED == 'true' }
 			}
 			steps {
 				sh (
@@ -30,7 +30,7 @@ pipeline {
 		}
 		stage("testing") {
 			when {
-				expression { $PROD_CHANGED == 'true' }
+				expression { env.PROD_CHANGED == 'true' }
 			}
 			steps {
 				sh (
@@ -41,7 +41,7 @@ pipeline {
 		}
 		stage("artifactory-publish") {
 			when {
-				expression { $PROD_CHANGED == 'true' }
+				expression { env.PROD_CHANGED == 'true' }
 			}
 			steps {
 				sh (
