@@ -54,7 +54,7 @@ pipeline {
 			when {
 				expression { ${PROD_CHANGED} == 'false' }
 			}
-			steos {
+			steps {
 				echo "no changes detected in product"
 			}
 		}
