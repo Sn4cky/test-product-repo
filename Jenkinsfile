@@ -14,7 +14,9 @@ pipeline {
 				}
 			}
 			steps {
-				env.PROD_CHANGED = 'true'
+				script {
+					env.PROD_CHANGED = 'true'
+				}
 			}
 		}
 		stage("typescript-build") {
