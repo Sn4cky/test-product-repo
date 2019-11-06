@@ -52,13 +52,5 @@ pipeline {
 				)
 			}
 		}
-		stage("no-change-detected") {
-			when {
-				expression { env.PROD_CHANGED == 'false' }
-			}
-			steps {
-				echo "no changes detected in product"
-			}
-		}
     }
 }
