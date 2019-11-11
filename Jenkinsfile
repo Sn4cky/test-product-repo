@@ -16,6 +16,7 @@ pipeline {
 			steps {
 				script {
 					env.PROD_CHANGED = 'true'
+					sh "echo ${env.PROD_CHANGED}"
 				}
 			}
 		}
