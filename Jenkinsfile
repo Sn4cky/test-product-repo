@@ -2,7 +2,7 @@ pipeline {
     agent any
 	
 	environment {
-		PROD_CHANGED = 'false'
+		PROD_CHANGED = "false"
 	}
 	
     stages {
@@ -15,14 +15,15 @@ pipeline {
 			}
 			steps {
 				script {
-					env.PROD_CHANGED = 'true'
-					sh "echo ${env.PROD_CHANGED}"
+					sh "echo ${PROD_CHANGED}"
+					PROD_CHANGED = "true"
+					sh "echo ${PROD_CHANGED}"
 				}
 			}
 		}
 		stage("typescript-build") {
 			when {
-				expression { env.PROD_CHANGED == 'true' }
+				expression { PROD_CHANGED == "true" }
 			}
 			steps {
 				sh (
@@ -33,7 +34,7 @@ pipeline {
 		}
 		stage("testing") {
 			when {
-				expression { env.PROD_CHANGED == 'true' }
+				expression { PROD_CHANGED == "true" }
 			}
 			steps {
 				sh (
@@ -44,7 +45,7 @@ pipeline {
 		}
 		stage("artifactory-publish") {
 			when {
-				expression { env.PROD_CHANGED == 'true' }
+				expression { PROD_CHANGED == "true" }
 			}
 			steps {
 				sh (
