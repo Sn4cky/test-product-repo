@@ -15,9 +15,7 @@ pipeline {
 			}
 			steps {
 				script {
-					sh "echo ${PROD_CHANGED}"
 					PROD_CHANGED = "true"
-					sh "echo ${PROD_CHANGED}"
 				}
 			}
 		}
